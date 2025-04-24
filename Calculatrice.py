@@ -37,12 +37,17 @@ def sqr_ro(x):
     return calc_str, result
 
 def afficher_5_derniers_calculs(nom_fichier="memoire_calculate.txt"):
-    with open(nom_fichier, 'r', encoding='utf-8') as f:
-        lignes = f.readlines()
-        dernieres_lignes = lignes[-5:]
-        print("Les 5 derniers calculs :")
-        for ligne in dernieres_lignes:
-            print(ligne.strip()) 
+    try:
+        with open(nom_fichier, 'r', encoding='utf-8') as f:
+            lignes = f.readlines()
+            dernieres_lignes = lignes[-5:]
+            print("Les 5 derniers calculs :")
+            for ligne in dernieres_lignes:
+                print(ligne.strip())
+    except FileNotFoundError:
+        print("Le fichier n'a pas été trouvé.")
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
 
 cont = 1
 while cont == 1:
@@ -75,10 +80,14 @@ while cont == 1:
         calc_expression, resultat_final = sqr_ro(nombre)
     elif calcul == 7:
         afficher_5_derniers_calculs()
-
-    if calc_expression and resultat_final is not None:
-        with open("memoire_calculate.txt", "a", encoding='utf_8') as f: 
-            f.write(f"Calcul : {calc_expression} = {resultat_final}\n")
+    try:
+        if calc_expression and resultat_final is not None:
+            with open("memoire_calculate.txt", "a", encoding='utf_8') as f: 
+                f.write(f"Calcul : {calc_expression} = {resultat_final}\n")
+    except FileNotFoundError:
+        print("Le fichier n'a pas été trouvé.")
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
 
     cont = int(input("Si vous voulez continuer, tapez 1. Sinon, n'importe quel chiffre "))
 
