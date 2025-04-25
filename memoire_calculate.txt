@@ -1,8 +1,0 @@
-Calcul : √25 = 5.0
-Calcul : √49 = 7.0
-Calcul : √64 = 8.0
-Calcul : 5 * 6 = 30
-Calcul : 4 + 9 = 13
-Calcul : √90 = 9.486832980505138
-Calcul : 56² = 3136
-Calcul : √25 = 5.0
